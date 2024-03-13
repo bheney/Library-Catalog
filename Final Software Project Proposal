@@ -1,0 +1,67 @@
+COMP 730 + 830 Final Project Proposal
+
+**Team Members:**
+
+Charishma Bandari and Benjamin Heney
+
+**Project Goal:**
+
+Book Catalog System
+
+**Major Features and Functions:**
+
+**User Authentication:**
+
+- Registration and Login for accounts with personal details.
+- Persistent Accounts with editable profiles.
+
+**Book Management:**
+
+- Each book is represented as an object containing details such as title, author, ISBN, publication year, genre, etc.
+- Users can manage book inventory by adding new books to the catalog or editing existing entries and remove books from the catalog when necessary.
+- All books in the catalog can be viewed, searched, and filtered in a "catalog browser" interface.
+
+**Search and Retrieval:**
+
+- Users can search for books by title, author, ISBN, publication year, or genre.
+- View detailed information about specific books, including availability status and location within the library.
+
+**Check-in/Check-out System:**
+
+- Allow users to check out books from the catalog.
+- Track book availability and due dates for checked-out books.
+- Provide notifications for overdue books and reminders for return dates.
+
+**Achievement Level – 50%:**
+
+• Working template for managing book inventory.
+
+• Basic user authentication with registration and login functionality.
+
+• Simple catalog browser for viewing book listings.
+
+• Initial implementation of check-in/check-out functionality for books.
+
+**Achievement Level – 75%:**
+
+• Complete book management system with CRUD operations for adding, editing, and deleting book entries.
+
+• Improved search and filter functionalities for browsing the catalog.
+
+• Enhanced check-in/check-out system with tracking of book availability and due dates.
+
+**Achievement Level – 100%:**
+
+• Enhanced user authentication with account details management.
+
+• Advanced search and filter options for refined book searches.
+
+• Full-fledged check-in/check-out system with notifications and reminders.
+
+• Option for users to edit their account information.
+
+• Bug fixes, performance optimization, and documentation for both developers and end-users.
+
+**Full Description:**
+
+The Book Catalog System with Check-in/Check-out Functionality project aims to create a comprehensive platform for managing and browsing a catalog of books, with added features for tracking book availability and managing check-ins and check-outs. Users can register for accounts, manage book inventory, search for specific books, and borrow items from the catalog. The system provides automated notifications and reminders to ensure timely returns and efficient management of borrowed books. With features like user authentication, search and retrieval, and check-in/check-out functionality, the system offers a user-friendly and efficient solution for managing book collections and facilitating borrowing among users.
