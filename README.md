@@ -1,2 +1,2 @@
-# COMP-730-Project
-Final project for COMP 730
+# Library-Catalog 
+COMP 730 + 830 (Software Development) Final Project
