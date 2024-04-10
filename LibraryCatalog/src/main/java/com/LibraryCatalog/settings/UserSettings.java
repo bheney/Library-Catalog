@@ -1,3 +1,5 @@
+package com.LibraryCatalog.settings;
+
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;
 import java.io.IOException;
@@ -66,5 +68,11 @@ public class UserSettings implements Serializable {
         }
     }
 
+    public String getDbURL() {return dbURL;}
+    public void setDbURL(String url) {dbURL = url;}
+    public String getDbUsername() {return dbUsername;}
+    public void setDbUsername(String username){dbUsername = username;}
+    public String getDbPassword() {return dbPassword;}
+    public void setDbPassword(String password){dbPassword = password;}
 
 }
