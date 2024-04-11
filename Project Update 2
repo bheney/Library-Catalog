@@ -1,0 +1,28 @@
+COMP 730 + 830 Final Software Project Update 2
+
+Team Members:
+Charishma Bandari and Ben Heney
+Past Project Progress:
+Created the User.java class to handle user information and authentication features.
+Implemented attributes such as first name, last name, date of birth, address, phone number, library card number, issue type, email, and zip code. Developed methods for registering a new user, updating user information, and retrieving user details.
+Designed the BookCatalog.java class to manage the catalog of books in the system.
+Implemented functionalities for adding new books, editing existing book entries, deleting books, and retrieving book details. Integrated the book catalog management system with the overall project structure. Ensured proper code structure and organization within the classes for readability and maintainability.
+Utilized appropriate getters and setters for accessing and modifying class attributes.
+Implemented necessary constructors and methods to handle user interactions and data operations.
+Past Team Member Activities:
+
+Charishma Bandari:
+Responsible for creating the User.java class and implementing user authentication features. Developed methods for user registration, login, password management, and session handling. Integrated user authentication functionalities with the database and ensured data security. Conducted testing and debugging of backend functionalities, addressing issues promptly.
+
+Ben Heney:
+Ben has been developing and implementing the AppSettings and UserSettings classes, as well as the Database class and an installation script. This background infrastructure supports the main app in several ways:
+1. AppSettings and install.sh compile the LibraryCatalog project with a unique encryption key that allows sensitive information to be stored locally. Specifically, database access credentials need to be retained in persistent memory so that users do not need to re-enter this information each time the application restarts. However, because the application is intended to run on public kiosks, it would be unwise to store this information without any kind of protection.
+2. UserSettings stores information necessary to customize the application.
+3. Database will provide an interface for, and a MySQL implementation of, storing and retrieving information from a remote database.
+
+To-Do Items :
+Maintain a field in the Book table to track the availability status of each book, such as "Available," "Checked Out," or "On Hold." Update the availability status based on check-in/check-out transactions and user actions. Ensure that user authentication functionalities are fully implemented and tested, including registration, login, password management, and session handling. Focus on enhancing user authentication by adding account details management functionalities, such as profile editing and password change. Conduct thorough testing of user authentication features to ensure data security and reliability. Develop a login system with secure authentication mechanisms such as hashing passwords. Create a password reset feature with email verification for added security. Complete the implementation of the AppSettings, UserSettings, and Database classes to support the application's backend infrastructure. Test and validate the installation script (install.sh) to ensure smooth deployment and configuration of the application. Complete the implementation of CRUD operations for book management, allowing users to add, edit, and delete books from the catalog. Develop advanced search and filter functionalities to Implement advanced search and filter options allowing users to refine book searches based on criteria like author, genre, publication year, ISBN, and availability status. Provide filters to sort and categorize search results for easier navigation. 
+
+Difficulties:
+Integrating the User.java and BookCatalog.java classes with other modules and ensuring seamless communication between them was challenging. Designing a scalable, maintainable, and extensible system architecture that aligns with project goals and requirements was difficult.
+Designing a secure and convenient application has been a challenge. The current approach will expose the encryption key if the binary is decompiled. To eliminate this vulnerability, a password would be required on start-up. The password could then be hashed into an encryption key. This poses some issues for users as library staff would need to log in each time the application restarts. Furthermore, the password would need to be shared among library staff reducing its security. Lastly, implementing this would require more development resources be spent on features that do not contribute to the core functionality of the app. So, as a compromise, raw credentials are protected from being exposed through a local file system.
