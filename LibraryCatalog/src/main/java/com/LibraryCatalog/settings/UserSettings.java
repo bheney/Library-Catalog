@@ -1,4 +1,4 @@
-package com.LibraryCatalog.settings;
+package main.java.com.LibraryCatalog.settings;
 
 import javax.crypto.*;
 import javax.crypto.spec.IvParameterSpec;

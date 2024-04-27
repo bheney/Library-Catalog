@@ -1,11 +1,19 @@
-package com.LibraryCatalog;
+package main.java.com.LibraryCatalog;
 
-import com.LibraryCatalog.dao.Database;
-import com.LibraryCatalog.settings.UserSettings;
+import main.java.com.LibraryCatalog.dao.Database;
+import main.java.com.LibraryCatalog.settings.UserSettings;
+import main.java.com.LibraryCatalog.ui.patron.KioskHome;
+
+import javax.swing.*;
 
 public class LibraryCatalog {
     public static void main(String[] args) {
-        Database db = Database.getDatabase();
-        UserSettings settings = UserSettings.getSettings();
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new KioskHome();
+            }
+        });
+
     }
 }

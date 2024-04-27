@@ -1,23 +1,24 @@
-package com.LibraryCatalog.dao;
+package main.java.com.LibraryCatalog.dao;
 
-import com.LibraryCatalog.settings.UserSettings;
+import main.java.com.LibraryCatalog.settings.AppSettings;
+import main.java.com.LibraryCatalog.settings.UserSettings;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.regex.Pattern;
+
 public class Database {
     private static Database instance;
-    private static UserSettings settings;
+    private static final UserSettings userSettings = UserSettings.getSettings();
+    private static final AppSettings appSettings = AppSettings.getSettings();
     private static Connection connection;
 
     private Database() {
-        settings = UserSettings.getSettings();
 
         // Load the JDBC driver
         try {
-            Class.forName(settings.getDBDriver());
+            Class.forName(userSettings.getDBDriver());
         } catch (ClassNotFoundException e) {
             // TODO: Handle this
             e.printStackTrace();
@@ -25,7 +26,7 @@ public class Database {
 
         // Build a JDBC connection
         try {
-            connection = DriverManager.getConnection(settings.getDbURL(), settings.getDbUsername(), settings.getDbPassword());
+            connection = DriverManager.getConnection(userSettings.getDbURL(), userSettings.getDbUsername(), userSettings.getDbPassword());
         } catch (SQLException e) {
             // TODO: Handle this
             e.printStackTrace();
@@ -39,5 +40,10 @@ public class Database {
             instance = new Database();
         }
         return instance;
+    }
+
+    public static String sanitize(String input){
+        Pattern pattern = Pattern.compile("[^a-zA-Z0-9\\s]");
+        return pattern.matcher(input).replaceAll("");
     }
 }
