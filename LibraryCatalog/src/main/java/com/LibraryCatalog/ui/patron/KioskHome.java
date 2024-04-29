@@ -1,7 +1,7 @@
-package main.java.com.LibraryCatalog.ui.patron;
+package com.LibraryCatalog.ui.patron;
 
-import main.java.com.LibraryCatalog.settings.AppSettings;
 import javax.swing.*;
+import com.LibraryCatalog.settings.AppSettings;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,7 +11,7 @@ import java.util.List;
 public class KioskHome {
     private JLabel lblSignIn;
     private JLabel lblCardNumber;
-    private JTextField textCardNubmer;
+    private JTextField textCardNumber;
     private JLabel lblPassword;
     private JPasswordField pswdPassword;
     private JButton btnSignIn;
@@ -26,29 +26,28 @@ public class KioskHome {
     private AppSettings.availableMedia activeMediaType;
     private List<JPanel> criteria;
 
-
     public KioskHome() {
-        // Create the list of Search Criteria
+        // Initialize the list of Search Criteria
         criteria = new ArrayList<>();
         criteria.add(initialSearchField);
 
+        // Call createUIComponents to initialize Swing components
+        createUIComponents();
+
         // When the Media type changes
-        // TODO Exception in thread "AWT-EventQueue-0" java.lang.NullPointerException: Cannot invoke "javax.swing.JComboBox.addActionListener(java.awt.event.ActionListener)" because "this.comboMediaType" is null
         comboMediaType.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                AppSettings.availableMedia mediaSelection = (AppSettings.availableMedia) comboMediaType.getSelectedItem();
+                AppSettings.availableMedia mediaSelection = comboMediaType.getItemAt(comboMediaType.getSelectedIndex());
                 setActiveMediaType(mediaSelection);
             }
         });
 
-        // Add a new search criteria
+        // Add a new search criterion
         btnAddCriterion.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                scrollSearchCriteria.add(new JPanel());
-                scrollSearchCriteria.revalidate();
-                scrollSearchCriteria.repaint();
+                addSearchCriterion();
             }
         });
     }
@@ -59,34 +58,27 @@ public class KioskHome {
     }
 
     private void setActiveMediaType(AppSettings.availableMedia newMediaType) {
-        // Update the state
         activeMediaType = newMediaType;
-
         // Update the search field ComboBoxes
-        for (JPanel panel : criteria){
-            // Get the ComboBox instance
+        for (JPanel panel : criteria) {
             JComboBox<String> box = null;
             for (Component component : panel.getComponents()) {
                 if (component instanceof JComboBox) box = (JComboBox<String>) component;
             }
-            // Store the current selection
-            assert box != null;
-            String currentSelection = (String) box.getSelectedItem();
-            // Clear the old fields
-            box.removeAllItems();
-            // Add the new fields
-            for (String field : activeMediaType.searchFields) {
-                box.addItem(field);
-            }
-            // Restore the previous item
-            if (currentSelection !=null && activeMediaType.searchFields.contains(currentSelection)){
-                box.setSelectedItem(currentSelection);
+            if (box != null) {
+                String currentSelection = (String) box.getSelectedItem();
+                box.removeAllItems();
+                for (String field : activeMediaType.searchFields) {
+                    box.addItem(field);
+                }
+                if (currentSelection != null && activeMediaType.searchFields.contains(currentSelection)) {
+                    box.setSelectedItem(currentSelection);
+                }
             }
         }
     }
 
     private void addSearchCriterion() {
-        // Create and build the new panel
         JPanel newPanel = new JPanel();
         JTextField newTxtField = new JTextField();
         JComboBox<String> newComboBox = new JComboBox<>();
@@ -95,10 +87,9 @@ public class KioskHome {
         for (String field : activeMediaType.searchFields) {
             newComboBox.addItem(field);
         }
-
-        // Add the search panel to the tracker
         criteria.add(newPanel);
+        scrollSearchCriteria.add(newPanel);
+        scrollSearchCriteria.revalidate();
+        scrollSearchCriteria.repaint();
     }
 }
-
-
