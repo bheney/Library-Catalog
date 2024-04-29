@@ -1,5 +1,7 @@
+package com.LibraryCatalog;
 import java.util.Date;
-ublic class User {
+
+public class User {
     // Attributes
     private String firstName;
     private String lastName;
@@ -23,3 +25,99 @@ ublic class User {
         this.email = email;
         this.zip = zip;
     }
+
+    // Getters and setters for attributes
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Date getDob() {
+        return dob;
+    }
+
+    public void setDob(Date dob) {
+        this.dob = dob;
+    }
+
+    public String getStreet() {
+        return street;
+    }
+
+    public void setStreet(String street) {
+        this.street = street;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getLibraryCardNumber() {
+        return libraryCardNumber;
+    }
+
+    public void setLibraryCardNumber(String libraryCardNumber) {
+        this.libraryCardNumber = libraryCardNumber;
+    }
+
+    public String getIssue() {
+        return issue;
+    }
+
+    public void setIssue(String issue) {
+        this.issue = issue;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public void setZip(String zip) {
+        this.zip = zip;
+    }
+
+    // Additional Methods
+    public void updateUserInfo(String street, String phone, String email, String zip) {
+        this.street = street;
+        this.phone = phone;
+        this.email = email;
+        this.zip = zip;
+    }
+
+    public void changePassword(String newPassword) {
+        // Logic to change the user's password
+    }
+
+    public void sendEmailVerification() {
+        // Logic to send email verification
+    }
+
+    public void deleteAccount() {
+        // Logic to delete the user's account and associated data
+    }
+
+}
+
