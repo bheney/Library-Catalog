@@ -1,4 +1,4 @@
-package main.java.com.LibraryCatalog.catalog;
+package com.LibraryCatalog.catalog;
 
 import java.util.HashSet;
 
