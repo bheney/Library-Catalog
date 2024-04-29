@@ -1,4 +1,4 @@
-package main.java.com.LibraryCatalog.settings;
+package com.LibraryCatalog.settings;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
