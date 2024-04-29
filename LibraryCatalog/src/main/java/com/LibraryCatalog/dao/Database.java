@@ -1,12 +1,12 @@
-package main.java.com.LibraryCatalog.dao;
-
-import main.java.com.LibraryCatalog.settings.AppSettings;
-import main.java.com.LibraryCatalog.settings.UserSettings;
+package com.LibraryCatalog.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
+
+import com.LibraryCatalog.settings.AppSettings;
+import com.LibraryCatalog.settings.UserSettings;
 
 public class Database {
     private static Database instance;
