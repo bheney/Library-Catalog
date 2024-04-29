@@ -1,10 +1,8 @@
-package main.java.com.LibraryCatalog;
+package com.LibraryCatalog;
 
-import main.java.com.LibraryCatalog.dao.Database;
-import main.java.com.LibraryCatalog.settings.UserSettings;
-import main.java.com.LibraryCatalog.ui.patron.KioskHome;
+import javax.swing.SwingUtilities;
 
-import javax.swing.*;
+import com.LibraryCatalog.ui.patron.KioskHome;
 
 public class LibraryCatalog {
     public static void main(String[] args) {
