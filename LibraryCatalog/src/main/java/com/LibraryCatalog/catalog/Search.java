@@ -1,10 +1,10 @@
-package com.LibraryCatalog.catalog;
+package main.java.com.LibraryCatalog.catalog;
 
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.LibraryCatalog.dao.Database;
+import main.java.com.LibraryCatalog.dao.Database;
 
 public class Search {
     private String querry;

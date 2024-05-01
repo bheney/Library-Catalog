@@ -1,4 +1,4 @@
-package com.LibraryCatalog.catalog;
+package main.java.com.LibraryCatalog.catalog;
 
 public class Field {
     private final String fieldName;

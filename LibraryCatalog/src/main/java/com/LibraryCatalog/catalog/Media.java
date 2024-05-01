@@ -1,4 +1,4 @@
-package com.LibraryCatalog.catalog;
+package main.java.com.LibraryCatalog.catalog;
 
 import java.util.Set;
 

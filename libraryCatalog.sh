@@ -1,0 +1,1 @@
+java -cp LibraryCatalog/target/classes main.java.com.LibraryCatalog.LibraryCatalog

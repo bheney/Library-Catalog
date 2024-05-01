@@ -1,12 +1,32 @@
-package com.LibraryCatalog.ui.patron;
+package main.java.com.LibraryCatalog.ui.patron;
 
-import javax.swing.*;
-import com.LibraryCatalog.settings.AppSettings;
-import java.awt.*;
-import java.awt.event.ActionEvent;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import java.awt.BorderLayout;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import java.awt.Component;
+import javax.swing.Box;
+import javax.swing.SwingConstants;
+
+import main.java.com.LibraryCatalog.dao.UserDatabase;
+import main.java.com.LibraryCatalog.users.User;
+import main.java.com.LibraryCatalog.settings.AppSettings;
+
+import java.awt.GridLayout;
+import java.awt.FlowLayout;
+import javax.swing.BoxLayout;
+import javax.swing.JTextField;
+import javax.swing.JButton;
+import javax.swing.JPasswordField;
+import javax.swing.JComboBox;
+import javax.swing.JScrollPane;
+
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.util.List;
+import java.awt.event.ActionEvent;
 
 public class KioskHome {
     private JLabel lblSignIn;
@@ -22,74 +42,104 @@ public class KioskHome {
     private JButton btnAddCriterion;
     private JScrollPane scrollSearchCriteria;
     private JPanel initialSearchField;
+	private JFrame frameKioskHome;
+	private JTextField textFieldCardNumber;
+	private JPasswordField passwordField;
 
-    private AppSettings.availableMedia activeMediaType;
-    private List<JPanel> criteria;
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					KioskHome window = new KioskHome();
+					window.frameKioskHome.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-    public KioskHome() {
-        // Initialize the list of Search Criteria
-        criteria = new ArrayList<>();
-        criteria.add(initialSearchField);
+	/**
+	 * Create the application.
+	 */
+	public KioskHome() {
+		initialize();
+	}
 
-        // Call createUIComponents to initialize Swing components
-        createUIComponents();
-
-        // When the Media type changes
-        comboMediaType.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                AppSettings.availableMedia mediaSelection = comboMediaType.getItemAt(comboMediaType.getSelectedIndex());
-                setActiveMediaType(mediaSelection);
-            }
-        });
-
-        // Add a new search criterion
-        btnAddCriterion.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                addSearchCriterion();
-            }
-        });
-    }
-
-    private void createUIComponents() {
-        comboMediaType = new JComboBox<>(AppSettings.availableMedia.values());
-        comboFieldSelect = new JComboBox<>();
-    }
-
-    private void setActiveMediaType(AppSettings.availableMedia newMediaType) {
-        activeMediaType = newMediaType;
-        // Update the search field ComboBoxes
-        for (JPanel panel : criteria) {
-            JComboBox<String> box = null;
-            for (Component component : panel.getComponents()) {
-                if (component instanceof JComboBox) box = (JComboBox<String>) component;
-            }
-            if (box != null) {
-                String currentSelection = (String) box.getSelectedItem();
-                box.removeAllItems();
-                for (String field : activeMediaType.searchFields) {
-                    box.addItem(field);
-                }
-                if (currentSelection != null && activeMediaType.searchFields.contains(currentSelection)) {
-                    box.setSelectedItem(currentSelection);
-                }
-            }
-        }
-    }
-
-    private void addSearchCriterion() {
-        JPanel newPanel = new JPanel();
-        JTextField newTxtField = new JTextField();
-        JComboBox<String> newComboBox = new JComboBox<>();
-        newPanel.add(newTxtField);
-        newPanel.add(newComboBox);
-        for (String field : activeMediaType.searchFields) {
-            newComboBox.addItem(field);
-        }
-        criteria.add(newPanel);
-        scrollSearchCriteria.add(newPanel);
-        scrollSearchCriteria.revalidate();
-        scrollSearchCriteria.repaint();
-    }
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		frameKioskHome = new JFrame();
+		frameKioskHome.setBounds(100, 100, 450, 300);
+		frameKioskHome.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frameKioskHome.getContentPane().setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
+		
+		Box horizontalBoxMainDivider = Box.createHorizontalBox();
+		frameKioskHome.getContentPane().add(horizontalBoxMainDivider);
+		
+		Box verticalBoxSignOn = Box.createVerticalBox();
+		horizontalBoxMainDivider.add(verticalBoxSignOn);
+		
+		JLabel lblSignOn = new JLabel("Sign On");
+		verticalBoxSignOn.add(lblSignOn);
+		lblSignOn.setVerticalAlignment(SwingConstants.TOP);
+		
+		JLabel lblCardNo = new JLabel("Card Number:");
+		verticalBoxSignOn.add(lblCardNo);
+		
+		textFieldCardNumber = new JTextField();
+		verticalBoxSignOn.add(textFieldCardNumber);
+		textFieldCardNumber.setColumns(10);
+		
+		JLabel lblPassword = new JLabel("Password:");
+		verticalBoxSignOn.add(lblPassword);
+		
+		passwordField = new JPasswordField();
+		verticalBoxSignOn.add(passwordField);
+		
+		JButton btnSignOn = new JButton("Sign On");
+		btnSignOn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				try {
+					String cardNo = textFieldCardNumber.getText();
+					User user = UserDatabase.getUserByCard(cardNo);
+					char[] password = passwordField.getPassword();
+					if (user.checkPassword(password.toString())) {
+						JOptionPane.showMessageDialog(null, "Login Successful!");
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Invalid Username or Password. Try again.");
+					}
+				} catch(Exception e) {
+					JOptionPane.showMessageDialog(null, "Database Error:\n" + e);
+				}
+			}
+		});
+		verticalBoxSignOn.add(btnSignOn);
+		
+		Box verticalBoxSearch = Box.createVerticalBox();
+		horizontalBoxMainDivider.add(verticalBoxSearch);
+		
+		JLabel lblSearch = new JLabel("Search");
+		verticalBoxSearch.add(lblSearch);
+		
+		JLabel lblMediaType = new JLabel("Media Type:");
+		verticalBoxSearch.add(lblMediaType);
+		
+		JComboBox comboBoxMediaType = new JComboBox();
+		verticalBoxSearch.add(comboBoxMediaType);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		verticalBoxSearch.add(scrollPane);
+		
+		JButton btnAddCriterion = new JButton("Add Criterion");
+		verticalBoxSearch.add(btnAddCriterion);
+		
+		JButton btnSearch = new JButton("Search");
+		verticalBoxSearch.add(btnSearch);
+	}
 }
