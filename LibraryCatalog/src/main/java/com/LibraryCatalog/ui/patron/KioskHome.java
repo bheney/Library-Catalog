@@ -14,6 +14,7 @@ import javax.swing.SwingConstants;
 
 import main.java.com.LibraryCatalog.dao.UserDatabase;
 import main.java.com.LibraryCatalog.users.User;
+import main.java.com.LibraryCatalog.settings.AppSettings;
 
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
@@ -23,11 +24,24 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
+
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class KioskHome {
-
+    private JLabel lblSignIn;
+    private JLabel lblCardNumber;
+    private JTextField textCardNumber;
+    private JLabel lblPassword;
+    private JPasswordField pswdPassword;
+    private JButton btnSignIn;
+    private JLabel lblSearch;
+    private JComboBox<AppSettings.availableMedia> comboMediaType;
+    private JComboBox<String> comboFieldSelect;
+    private JButton btnSearch;
+    private JButton btnAddCriterion;
+    private JScrollPane scrollSearchCriteria;
+    private JPanel initialSearchField;
 	private JFrame frameKioskHome;
 	private JTextField textFieldCardNumber;
 	private JPasswordField passwordField;
@@ -128,5 +142,4 @@ public class KioskHome {
 		JButton btnSearch = new JButton("Search");
 		verticalBoxSearch.add(btnSearch);
 	}
-
 }

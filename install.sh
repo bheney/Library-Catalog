@@ -18,7 +18,7 @@ sed -i "s~$keyLine~$newKeyLine~g" "$appSettings" || { echo "Error: Failed to rep
 sed -i "s~$ivLine~$newIVLine~g" "$appSettings" || { echo "Error: Failed to replace iv in source file"; exit 1; }
 
 # Compile the project
-(cd LibraryCatalog || { echo "Error: Failed to change directory"; exit 1; }; mvn compile) || { echo "Error: Failed to compile project"; exit 1; }
+(cd LibraryCatalog || { echo "Error: Failed to change directory"; exit 1; }; mvn compile) || { echo "Error: Failed to compile project"; }
 
 # Remove the encryption from the source file
 sed -i "s~$newKeyLine~$keyLine~g" "$appSettings" || { echo "Error: Failed to restore key in source file"; exit 1; }

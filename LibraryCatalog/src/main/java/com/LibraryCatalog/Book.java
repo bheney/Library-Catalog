@@ -2,9 +2,9 @@ package main.java.com.LibraryCatalog;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Library {
+
+public class Book {
     // Inner class representing a Book
-    private static class Book {
         private String ISBN;
         private String title;
         private String author;
@@ -79,13 +79,12 @@ public class Library {
         public void setLocation(String location) {
             this.location = location;
         }
-    }
 
     // BookCatalog methods
     private List<Book> books;
 
     // Constructor
-    public Library() {
+    public Book() {
         this.books = new ArrayList<>();
     }
 
@@ -112,7 +111,8 @@ public class Library {
         System.out.println("Book not found for editing.");
     }
 
-    // Method to delete a book from the catalog
+
+	// Method to delete a book from the catalog
     public void deleteBook(String ISBN) {
         books.removeIf(book -> book.getISBN().equals(ISBN));
         System.out.println("Book deleted successfully.");
@@ -127,6 +127,11 @@ public class Library {
         }
         return null; // Book not found
     }
+
+	public void setQuantity(int quantity) {
+		// TODO Auto-generated method stub
+		
+	}
 
 }
 
