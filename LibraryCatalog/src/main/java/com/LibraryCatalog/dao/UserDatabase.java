@@ -1,12 +1,9 @@
 package main.java.com.LibraryCatalog.dao;
 
-import java.util.Date;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.regex.Pattern;
 
 import main.java.com.LibraryCatalog.users.User;
 
@@ -36,6 +33,7 @@ public class UserDatabase {
 	
     private final static String INSERT_SQL;
     private final static String SELECT_BY_CARD_SQL;
+    private final static Database db;
 
     static {
     	// Build the insertion SQL command
@@ -44,14 +42,16 @@ public class UserDatabase {
 		
 		// Build the retrieval SQL command
 		SELECT_BY_CARD_SQL = buildRetrieveByCardString();
+		
+		db = Database.getDatabase();
 
     }
     public UserDatabase() {
 
     }
   
-    public void saveUser(User user) {
-        try (Connection connection = Database.getConnection();
+    public static void saveUser(User user) {
+        try (Connection connection = db.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(INSERT_SQL)) {
 
             preparedStatement.setString(UserFields.FIRST_NAME.ordinal(), user.getFirstName());
@@ -74,32 +74,27 @@ public class UserDatabase {
     
     
 
-    public User getUserByCard(String cardNumber) {
+    public static User getUserByCard(String cardNumber) throws SQLException {
         User user = null;
-        try (Connection connection = Database.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_CARD_SQL)) {
+        Connection connection = db.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(SELECT_BY_CARD_SQL);
 
-            preparedStatement.setString(1, cardNumber);
+        preparedStatement.setString(1, cardNumber);
 
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    user = new User(
-                    		resultSet.getString(UserFields.FIRST_NAME.getField()),
-                    		resultSet.getString(UserFields.LAST_NAME.getField()),
-                    		new java.util.Date(resultSet.getDate(UserFields.DOB.getField()).getTime()),
-                    		resultSet.getString(UserFields.STREET.getField()),
-                    		resultSet.getString(UserFields.PHONE.getField()),
-                    		resultSet.getString(UserFields.CARD_NUMBER.getField()),
-                    		new java.util.Date(resultSet.getDate(UserFields.ISSUE_DATE.getField()).getTime()),
-                    		resultSet.getString(UserFields.EMAIL.getField()),
-                    		resultSet.getString(UserFields.ZIP.getField()),
-                    		resultSet.getString(UserFields.HASH.getField())
-            		);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            // Handle exceptions
+        ResultSet resultSet = preparedStatement.executeQuery();
+        if (resultSet.next()) {
+            user = new User(
+            		resultSet.getString(UserFields.FIRST_NAME.getField()),
+            		resultSet.getString(UserFields.LAST_NAME.getField()),
+            		new java.util.Date(resultSet.getDate(UserFields.DOB.getField()).getTime()),
+            		resultSet.getString(UserFields.STREET.getField()),
+            		resultSet.getString(UserFields.PHONE.getField()),
+            		resultSet.getString(UserFields.CARD_NUMBER.getField()),
+            		new java.util.Date(resultSet.getDate(UserFields.ISSUE_DATE.getField()).getTime()),
+            		resultSet.getString(UserFields.EMAIL.getField()),
+            		resultSet.getString(UserFields.ZIP.getField()),
+            		resultSet.getString(UserFields.HASH.getField())
+    		);
         }
         return user;
     }

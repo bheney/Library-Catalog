@@ -6,9 +6,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Component;
 import javax.swing.Box;
 import javax.swing.SwingConstants;
+
+import main.java.com.LibraryCatalog.dao.UserDatabase;
+import main.java.com.LibraryCatalog.users.User;
+
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
@@ -84,7 +90,19 @@ public class KioskHome {
 		JButton btnSignOn = new JButton("Sign On");
 		btnSignOn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				try {
+					String cardNo = textFieldCardNumber.getText();
+					User user = UserDatabase.getUserByCard(cardNo);
+					char[] password = passwordField.getPassword();
+					if (user.checkPassword(password.toString())) {
+						JOptionPane.showMessageDialog(null, "Login Successful!");
+					}
+					else {
+						JOptionPane.showMessageDialog(null, "Invalid Username or Password. Try again.");
+					}
+				} catch(Exception e) {
+					JOptionPane.showMessageDialog(null, "Database Error:\n" + e);
+				}
 			}
 		});
 		verticalBoxSignOn.add(btnSignOn);

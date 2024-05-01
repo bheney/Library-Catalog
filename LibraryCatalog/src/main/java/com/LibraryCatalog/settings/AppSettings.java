@@ -17,15 +17,23 @@ public class AppSettings {
     // this provides each installation with its own secret key
     private static final String keyString = "";
     private static final String ivString = "";
-    // Convert the raw string to a SecretKey
-    private static final byte[] keyBytes = keyString.getBytes();
-    private static final byte[] ivBytes = ivString.getBytes();
-    public static final SecretKey settingsEncryptionKey = new SecretKeySpec(keyBytes, 0, 256, "AES");
-    public static final IvParameterSpec settingsIV = new IvParameterSpec(ivBytes, 0, 32);
-
-    // Database Sanitization Regex
-    public static final Pattern dbSanitizationFilter = Pattern.compile("[^a-zA-Z0-9\\s]");
-
+    private static final byte[] keyBytes;
+    private static final byte[] ivBytes;
+    public static final SecretKey settingsEncryptionKey;
+    public static final IvParameterSpec settingsIV;
+    public static final Pattern dbSanitizationFilter;
+    
+    static {
+	    // Convert the raw string to a SecretKey
+	    keyBytes = keyString.getBytes();
+	    ivBytes = ivString.getBytes();
+	    settingsEncryptionKey = new SecretKeySpec(keyBytes, 0, 256, "AES");
+	    settingsIV = new IvParameterSpec(ivBytes, 0, 32);
+	
+	    // Database Sanitization Regex
+	    dbSanitizationFilter = Pattern.compile("[^a-zA-Z0-9\\s]");
+    }
+    
     // Media Types
     public enum availableMedia {
             BOOK("Book",

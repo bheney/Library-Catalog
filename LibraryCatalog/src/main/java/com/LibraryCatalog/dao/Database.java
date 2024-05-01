@@ -18,20 +18,18 @@ public class Database {
 
         // Load the JDBC driver
         try {
-            Class.forName(userSettings.getDBDriver());
-        } catch (ClassNotFoundException e) {
-            // TODO: Handle this
-            e.printStackTrace();
-        }
-
+			Class.forName(userSettings.getDBDriver());
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Cannot get Database Driver");
+		}
         // Build a JDBC connection
         try {
-            connection = DriverManager.getConnection(userSettings.getDbURL(), userSettings.getDbUsername(), userSettings.getDbPassword());
-        } catch (SQLException e) {
-            // TODO: Handle this
-            e.printStackTrace();
-        }
-
+			connection = DriverManager.getConnection(userSettings.getDbURL(), userSettings.getDbUsername(), userSettings.getDbPassword());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Cannot connect to Database");
+		}
     }
 
 
@@ -47,7 +45,7 @@ public class Database {
         return pattern.matcher(input).replaceAll("");
     }
     
-    public static Connection getConnection() {
+    public Connection getConnection() {
     	return connection;
     }
 }

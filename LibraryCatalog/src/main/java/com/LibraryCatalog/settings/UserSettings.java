@@ -1,7 +1,6 @@
 package main.java.com.LibraryCatalog.settings;
 
 import javax.crypto.*;
-import javax.crypto.spec.IvParameterSpec;
 import java.io.IOException;
 import java.io.Serializable;
 import java.security.InvalidAlgorithmParameterException;
@@ -51,7 +50,7 @@ public class UserSettings implements Serializable {
     public enum supportedDB {
         MySQL,
     }
-    private supportedDB dbType;
+    private supportedDB dbType = supportedDB.MySQL;
     private String dbURL;
     private String dbUsername;
     private String dbPassword;
