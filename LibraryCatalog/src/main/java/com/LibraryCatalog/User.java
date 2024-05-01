@@ -1,5 +1,6 @@
+package main.java.com.LibraryCatalog;
 import java.util.Date;
-ublic class User {
+public class User {
     // Attributes
     private String firstName;
     private String lastName;
@@ -23,3 +24,4 @@ ublic class User {
         this.email = email;
         this.zip = zip;
     }
+}

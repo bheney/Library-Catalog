@@ -1,4 +1,4 @@
-package com.LibraryCatalog;
+package main.java.com.LibraryCatalog;
 import java.util.ArrayList;
 import java.util.List;
 
