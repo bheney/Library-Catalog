@@ -5,13 +5,16 @@ main/java/com/LibraryCatalog/catalog/Media.class
 main/java/com/LibraryCatalog/settings/UserSettings$supportedDB.class
 main/java/com/LibraryCatalog/ui/patron/KioskHome.class
 main/java/com/LibraryCatalog/settings/AppSettings.class
-main/java/com/LibraryCatalog/User.class
+main/java/com/LibraryCatalog/dao/UserDatabase$UserFields.class
 main/java/com/LibraryCatalog/ui/patron/KioskHome$1.class
 main/java/com/LibraryCatalog/settings/AppSettings$availableMedia.class
 main/java/com/LibraryCatalog/Library.class
+main/java/com/LibraryCatalog/dao/UserDatabase.class
 main/java/com/LibraryCatalog/Library$Book.class
 main/java/com/LibraryCatalog/catalog/Field.class
 main/java/com/LibraryCatalog/LibraryCatalog.class
 main/java/com/LibraryCatalog/catalog/Book.class
+main/java/com/LibraryCatalog/ui/patron/KioskHome$2.class
 main/java/com/LibraryCatalog/settings/UserSettings.class
 main/java/com/LibraryCatalog/catalog/Search.class
+main/java/com/LibraryCatalog/users/User.class

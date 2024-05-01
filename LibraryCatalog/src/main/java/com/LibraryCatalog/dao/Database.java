@@ -46,4 +46,8 @@ public class Database {
         Pattern pattern = Pattern.compile("[^a-zA-Z0-9\\s]");
         return pattern.matcher(input).replaceAll("");
     }
+    
+    public static Connection getConnection() {
+    	return connection;
+    }
 }

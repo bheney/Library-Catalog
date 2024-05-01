@@ -17,6 +17,8 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 import javax.swing.JComboBox;
 import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class KioskHome {
 
@@ -80,6 +82,11 @@ public class KioskHome {
 		verticalBoxSignOn.add(passwordField);
 		
 		JButton btnSignOn = new JButton("Sign On");
+		btnSignOn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+			}
+		});
 		verticalBoxSignOn.add(btnSignOn);
 		
 		Box verticalBoxSearch = Box.createVerticalBox();
